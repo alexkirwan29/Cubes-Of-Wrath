@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿//hello this is some extra lines that i added
+//just because tom wants me to
+//and also hi
+using UnityEngine;
 using System.Collections;
 
 public class GameCamera : MonoBehaviour
