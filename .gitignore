@@ -2,3 +2,9 @@ Assets/helpful bits/Capture.PNG
 Assets/helpful bits/Capture.PNG.meta
 Temp/
 Library/
+obj/
+.vs/
+*.unityproj
+*.csproj
+*.sln
+*.userprefs
