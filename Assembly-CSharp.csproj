@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{12C4C4E1-1F53-4FC4-559A-8776DF7E4E92}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_1_2;UNITY_5_1;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_LICENSE;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_EDITOR_METRICS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\BasicAnimator.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\Batch.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\Chunk.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\CollisionDetector.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\Constructor.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\Destructor.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\Exploder.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\Frame.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\Helper.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\MeshGenerator.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\MultiPartVolume.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\RandomDeformer.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Checksums\Adler32.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Checksums\CRC32.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Checksums\IChecksum.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Checksums\StrangeCRC.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\GZip\GZIPConstants.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\GZip\GZipException.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\GZip\GzipInputStream.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\GZip\GzipOutputStream.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\SharpZipBaseException.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\Deflater.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\DeflaterConstants.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\DeflaterEngine.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\DeflaterHuffman.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\DeflaterPending.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\Inflater.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\InflaterDynHeader.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\InflaterHuffmanTree.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\PendingBuffer.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\Streams\DeflaterOutputStream.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\Streams\InflaterInputStream.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\Streams\OutputWindow.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\Compression\Streams\StreamManipulator.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\SharpZip\Zip\ZipException.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\Volume.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\Voxel.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxel\Scripts\VoxelParticleSystem.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\ConstructDestruct\Scripts\ConstructorDelay.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\ConstructDestruct\Scripts\DestructorDelay.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaDerby\Scripts\DerbyCar.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaInvaders\Scripts\InvadersBullet.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaInvaders\Scripts\InvadersBulletManager.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaInvaders\Scripts\InvadersInvader.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaInvaders\Scripts\InvadersPlayerShip.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaInvaders\Scripts\InvadersWave.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaIslands\Scripts\FirstPersonController\IslandsMouseLook.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaIslands\Scripts\IslandsClickBoom.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaRPG\Scripts\RPGCamera.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaRPG\Scripts\RPGCharacterController.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaShmup\Scripts\ShmupBullet.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaShmup\Scripts\ShmupBulletManager.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaShmup\Scripts\ShmupChopper.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaShmup\Scripts\ShmupEnemyManager.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaShmup\Scripts\ShmupPlane.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaShmup\Scripts\ShmupPlayfield.cs" />
+     <Compile Include="Assets\PicaVoxel\PicaVoxelDemos\PicaVoxelIntro\Scripts\IntroWreckingBall.cs" />
+     <Compile Include="Assets\Scripts\GameCamera.cs" />
+     <Compile Include="Assets\Scripts\LevelRenderer.cs" />
+     <Compile Include="Assets\Scripts\LoadLvl.cs" />
+     <Compile Include="Assets\Scripts\Move.cs" />
+     <Compile Include="Assets\Sonic Ether\Natural Bloom\Demo Scene\Scripts\SENBDLCameraAnimation.cs" />
+     <Compile Include="Assets\Sonic Ether\Natural Bloom\Demo Scene\Scripts\SENBDLGlobal.cs" />
+     <Compile Include="Assets\Sonic Ether\Natural Bloom\Demo Scene\Scripts\SENBDLGlowingOrbitingCube.cs" />
+     <Compile Include="Assets\Sonic Ether\Natural Bloom\Demo Scene\Scripts\SENBDLMainCube.cs" />
+     <Compile Include="Assets\Sonic Ether\Natural Bloom\Demo Scene\Scripts\SENBDLOrbitingCube.cs" />
+     <Compile Include="Assets\Sonic Ether\Natural Bloom\Scripts\SENaturalBloomAndDirtyLens.cs" />
+     <None Include="Assets\Sonic Ether\Natural Bloom\Shaders\SENaturalBloomAndDirtyLens.shader" />
+     <None Include="Assets\PicaVoxel\PicaVoxel\Shaders\PicaVoxel Diffuse.shader" />
+     <None Include="Assets\Sonic Ether\Natural Bloom\Shaders\SEParticlesAdditive.shader" />
+     <None Include="Assets\Sonic Ether\Natural Bloom\Shaders\SEEmissiveTextured.shader" />
+     <None Include="Assets\PicaVoxel\PicaVoxel\Shaders\PicaVoxel Diffuse Transparent.shader" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>F:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
