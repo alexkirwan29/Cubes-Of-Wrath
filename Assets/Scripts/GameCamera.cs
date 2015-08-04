@@ -1,7 +1,4 @@
-﻿//hello this is some extra lines that i added
-//just because tom wants me to
-//and also hi
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class GameCamera : MonoBehaviour
@@ -27,41 +24,44 @@ public class GameCamera : MonoBehaviour
 
     public float distance = 5f;
     public float height = 0.5f;
-    public float angle = 190f;
-    public float cameraRollAmmount = 5f;
+
+    #region camera roll stuff
+    /*public float cameraRollAmmount = 5f;
     public float cameraRollDamp = 0.5f;
 
     float cameraRollVelocity;
-    float cameraRoll;
+    float cameraRoll;*/
+    #endregion
 
-    Vector3 wantedPos;
+    Vector3 targetPos;
+    Vector3 targetForward;
     Transform target;
 
     Vector3 lastWantedPos;
 
     void LateUpdate()
     {
-        lastWantedPos = wantedPos;
+        lastWantedPos = targetPos;
         if (target != null)
-            wantedPos = target.position;
-
-        wantedPos.y = height;
-
-        transform.position = wantedPos + Quaternion.Euler(angle, 0, 0) * Vector3.forward * distance;
-
-        float horizontalVelocity = wantedPos.x - lastWantedPos.x;
-
+        {
+            targetForward = target.forward;
+            targetPos = target.position;
+        }
+        transform.position = targetPos + targetForward * distance + Vector3.up * height;
+        transform.LookAt(targetPos);
+        #region camera roll stuff
+        /*float horizontalVelocity = targetPos.x - lastWantedPos.x;
         cameraRoll = Mathf.SmoothDamp(cameraRoll, horizontalVelocity * cameraRollAmmount, ref cameraRollVelocity, cameraRollDamp * Time.deltaTime);
-
-        transform.rotation = Quaternion.LookRotation((wantedPos - transform.position).normalized, Quaternion.Euler(0, 0, cameraRoll) * Vector3.up); ;
+        transform.rotation = Quaternion.LookRotation((targetPos - transform.position).normalized, Quaternion.Euler(0, 0, cameraRoll) * Vector3.up);*/
+        #endregion
     }
 
     public void SetTarget(Transform newTarget)
     {        
         target = newTarget;
-        wantedPos = target.position;
-        wantedPos.y = height;
-        lastWantedPos = wantedPos;
+        targetPos = target.position;
+        targetForward = target.forward;
+        lastWantedPos = targetPos;
         Debug.Log(string.Format("Game Camera's target has been changed to <i>{0}</i>",newTarget.name));
     }
 }

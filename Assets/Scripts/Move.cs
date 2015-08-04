@@ -1,30 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Move : MonoBehaviour {
+[RequireComponent(typeof(CharacterController))]
+public class Move : MonoBehaviour
+{
+    public float forwardSpeed = 8f;
+    public float turnRate = 45f;
 
-    [Tooltip("The speed (M/s) that the player moves along it's X axis (sideways)")]
-	public float speed = 1.0f;
-    [Tooltip("The speed that the player moves along it's Z axis (forward)")]
-    public float fwdSpeed = 5f;
-
-    Rigidbody rigidbody;
+    CharacterController controller;
 
     void Start()
     {
-        // Get the rigidbody component and stuff in-to the rigidbody varible
-        // then tell the camera to follow this player
-
-        rigidbody = GetComponent<Rigidbody>();
         GameCamera.instance.SetTarget(transform);
+        controller = GetComponent<CharacterController>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        // Create a vector for the direction we want to move. then translate
-        // the rigidbody by the direction vector multiplied by time.delta time.
-
-        Vector3 move = new Vector3(Input.GetAxisRaw("Horizontal") * speed, 0, fwdSpeed);
-        rigidbody.MovePosition(rigidbody.position + move * Time.deltaTime);
+        // Rotate the character then move it forward.
+        transform.Rotate(Vector3.up, Input.GetAxisRaw("Horizontal") * turnRate * Time.deltaTime);
+        Vector3 move = transform.forward * forwardSpeed * Time.deltaTime;
+        move.y = -Physics.gravity.magnitude;
+        controller.Move(move);
     }
 }
