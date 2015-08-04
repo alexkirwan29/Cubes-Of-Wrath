@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Sprites
+  - Bars
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Sprites
+    uniqueID: 2037898471
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
