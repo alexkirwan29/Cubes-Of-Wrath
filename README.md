@@ -1,5 +1,2 @@
 # Cubes-Of-Wrath
-a game yay
-
-
-xdtlrktuvhclutif
+<b>This is the Git for Cubes of Wrath!</b>
