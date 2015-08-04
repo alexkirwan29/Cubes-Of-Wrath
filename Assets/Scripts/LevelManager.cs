@@ -1,125 +1,95 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Events;
+using System;
 
-public class enemy1 : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
-	public float patrolSpeed = 2f;                          // The nav mesh agent's speed when patrolling.
-	public float chaseSpeed = 5f;                           // The nav mesh agent's speed when chasing.
-	public float chaseWaitTime = 5f;                        // The amount of time to wait when the last sighting is reached.
-	public float patrolWaitTime = 1f;                       // The amount of time to wait when the patrol way point is reached.
-	public Transform[] patrolWayPoints;                     // An array of transforms for the patrol route.
+	Dictionary<TileCoord,Tile> data;
+	public UnityEvent OnChanged;
+	public Texture2D texture;
+	public LevelRenderer renderer;
 	
-	
-	private EnemySight enemySight;                          // Reference to the EnemySight script.
-	private NavMeshAgent nav;                               // Reference to the nav mesh agent.
-	private Transform player;                               // Reference to the player's transform.
-	private PlayerHealth playerHealth;                      // Reference to the PlayerHealth script.
-	private LastPlayerSighting lastPlayerSighting;          // Reference to the last global sighting of the player.
-	private float chaseTimer;                               // A timer for the chaseWaitTime.
-	private float patrolTimer;                              // A timer for the patrolWaitTime.
-	private int wayPointIndex;                              // A counter for the way point array.
-	
-	
-	void Awake ()
+	void Start()
 	{
-		// Setting up the references.
-		enemySight = GetComponent<EnemySight>();
-		nav = GetComponent<NavMeshAgent>();
-		player = GameObject.FindGameObjectWithTag(Tags.player).transform;
-		playerHealth = player.GetComponent<PlayerHealth>();
-		lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<LastPlayerSighting>();
-	}
-	
-	
-	void Update ()
-	{
-		// If the player is in sight and is alive...
-		if(enemySight.playerInSight && playerHealth.health > 0f)
-			// ... shoot.
-			Shooting();
-		
-		// If the player has been sighted and isn't dead...
-		else if(enemySight.personalLastSighting != lastPlayerSighting.resetPosition && playerHealth.health > 0f)
-			// ... chase.
-			Chasing();
-		
-		// Otherwise...
-		else
-			// ... patrol.
-			Patrolling();
-	}
-	
-	
-	void Shooting ()
-	{
-		// Stop the enemy where it is.
-		nav.Stop();
-	}
-	
-	
-	void Chasing ()
-	{
-		// Create a vector from the enemy to the last sighting of the player.
-		Vector3 sightingDeltaPos = enemySight.personalLastSighting - transform.position;
-		
-		// If the the last personal sighting of the player is not close...
-		if(sightingDeltaPos.sqrMagnitude > 4f)
-			// ... set the destination for the NavMeshAgent to the last personal sighting of the player.
-			nav.destination = enemySight.personalLastSighting;
-		
-		// Set the appropriate speed for the NavMeshAgent.
-		nav.speed = chaseSpeed;
-		
-		// If near the last personal sighting...
-		if(nav.remainingDistance < nav.stoppingDistance)
+		if (texture != null)
 		{
-			// ... increment the timer.
-			chaseTimer += Time.deltaTime;
-			
-			// If the timer exceeds the wait time...
-			if(chaseTimer >= chaseWaitTime)
+			MakeLevelFromTexture(texture);
+			renderer.RenderWorld(data);
+		}
+	}
+	public void MakeLevelFromTexture(Texture2D texture)
+	{
+		data = new Dictionary<TileCoord, Tile>();
+		for (int y, x = 0; x < texture.width; x++)
+		{
+			for (y = 0; y < texture.height; y++)
 			{
-				// ... reset last global sighting, the last personal sighting and the timer.
-				lastPlayerSighting.position = lastPlayerSighting.resetPosition;
-				enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
-				chaseTimer = 0f;
+				if (texture.GetPixel(x, y) == Color.black)
+					CreateTile(new TileCoord(x, y), new Tile(0));
 			}
 		}
-		else
-			// If not near the last sighting personal sighting of the player, reset the timer.
-			chaseTimer = 0f;
 	}
 	
-	
-	void Patrolling ()
+	public void CreateTile(TileCoord pos, Tile tile)
 	{
-		// Set an appropriate speed for the NavMeshAgent.
-		nav.speed = patrolSpeed;
-		
-		// If near the next waypoint or there is no destination...
-		if(nav.destination == lastPlayerSighting.resetPosition || nav.remainingDistance < nav.stoppingDistance)
-		{
-			// ... increment the timer.
-			patrolTimer += Time.deltaTime;
-			
-			// If the timer exceeds the wait time...
-			if(patrolTimer >= patrolWaitTime)
-			{
-				// ... increment the wayPointIndex.
-				if(wayPointIndex == patrolWayPoints.Length - 1)
-					wayPointIndex = 0;
-				else
-					wayPointIndex++;
-				
-				// Reset the timer.
-				patrolTimer = 0;
-			}
-		}
+		data.Add(pos,tile);
+	}
+	public void RemoveTile(TileCoord pos)
+	{
+		data.Remove(pos);
+	}
+	public void SetTile(TileCoord pos, Tile tile)
+	{
+		if (data[pos] == null)
+			CreateTile(pos, tile);
 		else
-			// If not near a destination, reset the timer.
-			patrolTimer = 0;
-		
-		// Set the destination to the patrolWayPoint.
-		nav.destination = patrolWayPoints[wayPointIndex].position;
+			data[pos] = tile;
+	}
+	public Tile GetTile(TileCoord pos)
+	{
+		return data[pos];
+	}
+}
+public struct TileCoord : System.IEquatable<TileCoord>
+{
+	public int x;
+	public int y;
+	
+	public TileCoord(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+	
+	public override bool Equals(object obj)
+	{
+		if(obj is TileCoord)
+			return base.Equals(obj);
+		return false;
+	}
+	public bool Equals(TileCoord other)
+	{
+		return x == other.x && y == other.y;
+	}
+	public override string ToString()
+	{
+		return string.Format("x:{0} y:{1}", x, y);
+	}
+	public override int GetHashCode()
+	{
+		return x.GetHashCode() + y.GetHashCode();
+	}
+}
+public class Tile
+{
+	public int prefab;
+	public Tile()
+	{
+		prefab = 0;
+	}
+	public Tile(int prefab)
+	{
+		this.prefab = prefab;
 	}
 }
