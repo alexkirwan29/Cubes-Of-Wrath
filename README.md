@@ -1,4 +1,3 @@
-#<b>This is the Git for Cubes of Wrath!</b><br>
 ![alt tag](http://i.imgur.com/I6QL4Uk.png)<br>
 Here you will find the source for SM4SHED INTERACTIVE's new game, Wrath Of Cubes!!!.<br>
 <b>Changelog</b><br>
