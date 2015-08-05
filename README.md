@@ -1,7 +1,7 @@
 ![alt tag](http://i.imgur.com/I6QL4Uk.png)
 <br>
+<h1>CUBES OF WRATH</h1>
 <br>
-<center>CUBES OF WRATH</center>
 <br>
 <b>Changelog</b><br>
 only major changes will be noted here<br>
