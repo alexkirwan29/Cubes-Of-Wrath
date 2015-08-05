@@ -1,12 +1,6 @@
-<style>
-#title {
-	text-align: center;
-}
-
-</style>
 ![alt tag](http://i.imgur.com/I6QL4Uk.png)
 <br>
-<div id="title"><h1>CUBES OF WRATH</h1></div>
+<div style="text-align: left;"><h1>CUBES OF WRATH</h1></div>
 <br>
 <br>
 <b>Changelog</b><br>
