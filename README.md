@@ -1,5 +1,8 @@
-![alt tag](http://i.imgur.com/I6QL4Uk.png)<br>
-Here you will find the source for SM4SHED INTERACTIVE's new game, Wrath Of Cubes!!!.<br>
+![alt tag](http://i.imgur.com/I6QL4Uk.png)
+<br>
+<br>
+<center>CUBES OF WRATH</center>
+<br>
 <b>Changelog</b><br>
 only major changes will be noted here<br>
 <ul>4th August 2015</ul>
