@@ -1,6 +1,6 @@
 ![alt tag](http://i.imgur.com/I6QL4Uk.png)
 <br>
-<h1>____CUBES OF WRATH____</h1>
+<h1><u>______CUBES OF WRATH______</u></h1>
 <br>
 <br>
 <b>Changelog</b><br>
