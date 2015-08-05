@@ -1,7 +1,7 @@
-Temp/
-Library/
-obj/
-.vs/
+Unity Project/Temp/
+Unity Project/Library/
+Unity Project/obj/
+Unity Project/.vs/
 *.unityproj
 *.csproj
 *.sln
