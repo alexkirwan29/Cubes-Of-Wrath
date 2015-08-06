@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f991a1ddea0172c4992b11e44e97012f, type: 3}
+  m_Name: Testing Level
+  m_EditorClassIdentifier: 
+  levelSetName: Tom's testing level set
+  prefabs:
+  - {fileID: 161532, guid: 9306c454c95b96c4a91d73fb92d4c651, type: 2}
