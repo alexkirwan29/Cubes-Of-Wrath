@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+[System.Obsolete]
 public class LevelRenderer : MonoBehaviour
 {
     public GameObject[] prefabs;
     Dictionary<TileCoord, Transform> spawnedTransforms;
 
+    [System.Obsolete]
     public void RenderWorld(Dictionary<TileCoord,Tile> data)
     {
         foreach (KeyValuePair<TileCoord, Tile> tile in data)
@@ -13,6 +15,7 @@ public class LevelRenderer : MonoBehaviour
             SpawnObject(tile);
         }
     }
+    [System.Obsolete]
     public void SpawnObject(KeyValuePair<TileCoord, Tile> tile)
     {
         int prefabIndex = tile.Value.prefab;

@@ -6,21 +6,29 @@ using System;
 public class LevelManager : MonoBehaviour
 {
 	Dictionary<TileCoord,Tile> data;
-	public UnityEvent OnChanged;
+    Dictionary<TileCoord, Transform> spawnedTiles;
+    public LevelSet levelSet;
 	public Texture2D texture;
-	public LevelRenderer renderer;
-	
-	void Start()
+
+    public UnityEvent OnChanged;
+
+    void Start()
 	{
-		if (texture != null)
+        // Set up our dictionaries that keep track of the map data
+        // and spawned prefabs.
+        data = new Dictionary<TileCoord, Tile>();
+        spawnedTiles = new Dictionary<TileCoord, Transform>();
+
+        if (texture != null)
 		{
 			MakeLevelFromTexture(texture);
-			renderer.RenderWorld(data);
 		}
 	}
 	public void MakeLevelFromTexture(Texture2D texture)
 	{
-		data = new Dictionary<TileCoord, Tile>();
+        // This method works by looping through each pixel in the
+        // texture. If the pixel is black then create a tile with
+        // the prefab value of 0.
 		for (int y, x = 0; x < texture.width; x++)
 		{
 			for (y = 0; y < texture.height; y++)
@@ -33,18 +41,50 @@ public class LevelManager : MonoBehaviour
 	
 	public void CreateTile(TileCoord pos, Tile tile)
 	{
-		data.Add(pos,tile);
-	}
+        // Make sure the prefab we want to spawn exists, if it doesn't
+        // cry in the console and exit out of this method.
+        if (!(tile.prefab >= 0 && tile.prefab < levelSet.prefabs.Length))
+        {
+            Debug.LogWarning(string.Format("This tile index {0} is not a valid index: Didn't do anything.",tile.prefab));
+            return;
+        }
+
+        // Check to see if a tile is already here if so, windge about
+        // it and return out of this method.
+        if(data.ContainsKey(pos))
+        {
+            Debug.LogWarning(string.Format("The map already has a tile at {0}: Didn't do anything.",pos));
+            return;
+        }
+
+        // Spawn in the prefab.
+        Transform inst = (Transform)Instantiate(levelSet.prefabs[tile.prefab].transform, new Vector3(pos.x, 0, pos.y), Quaternion.identity);
+        inst.SetParent(transform);
+
+        // Add the prefab and data value to the dictionaries so we can
+        // keep track of them for use later.
+        spawnedTiles.Add(pos,inst);
+        data.Add(pos, tile);
+    }
 	public void RemoveTile(TileCoord pos)
 	{
-		data.Remove(pos);
-	}
+        // See if we have spawned a tile at this pos, if so remove it
+        // to stop null refernce exceptions.
+        if(spawnedTiles.ContainsKey(pos))
+            Destroy(spawnedTiles[pos].gameObject);
+
+        // Next remove the dictionay entries
+        spawnedTiles.Remove(pos);
+        data.Remove(pos);
+    }
 	public void SetTile(TileCoord pos, Tile tile)
 	{
-		if (data[pos] == null)
-			CreateTile(pos, tile);
-		else
-			data[pos] = tile;
+        // Do we already have a tile at this pos? If so then remove it.
+        if (data.ContainsKey(pos))
+            RemoveTile(pos);
+
+        //Creat a tile, Duh!
+        CreateTile(pos, tile);
 	}
 	public Tile GetTile(TileCoord pos)
 	{
