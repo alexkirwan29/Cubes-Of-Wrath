@@ -4,10 +4,10 @@ using System.Collections;
 public class EditorCamera : MonoBehaviour
 {
     [SerializeField]
-    float panSpeed = 15f, rotateSpeed = 25f, zoomSpeed = 5f;
+    float panSpeed = 15f, mousePanSpeed = 5f, rotateSpeed = 25f, zoomSpeed = 5f;
 
-    [Range(0, 5)]
     public float orbitHeight = 2f;
+    [Range(0, 5)]
     public float mouseSensitivity = 1f;
     public float minZoom = -5f, maxZoom = -150f;
     public float maxVertAngle = 80, minVertAngle = -20;
@@ -22,7 +22,6 @@ public class EditorCamera : MonoBehaviour
         // Set the zoom to half the zoom value and the orbit angle to isometric.
         ZoomDecimal = 0.5f;
         orbitAngle = new Vector3(30f, 45f, 0);
-        orbitOrigin.y = orbitHeight;
     }
 
     #region Public Accessors
@@ -55,22 +54,40 @@ public class EditorCamera : MonoBehaviour
         // true so if it's false then just return out of the update method.
         if (!UserInput)
             return;
+
+        // Get the user's input and rotate it by the Orbit angle then normalize it.
         Vector3 userInput = Quaternion.Euler(0,OrbitAngle.y,0)* new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         userInput.y = 0;
-
         if (userInput.sqrMagnitude > 1)
             userInput.Normalize();
 
+        // Set the Orbit origin by adding the user input times by a speed and the
+        // zoom value to make the panning feel consistant.
         OrbitOrigin += userInput * panSpeed * Time.deltaTime * Zoom;
         
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButton(2))
         {
-            OrbitAngle += new Vector3(-Input.GetAxis("Mouse Y") * rotateSpeed * mouseSensitivity,Input.GetAxis("Mouse X") * rotateSpeed * mouseSensitivity);
+            // Get the user's input and rotate it by the Orbit angle.
+            userInput = Quaternion.Euler(0, OrbitAngle.y, 0) * -new Vector3(Input.GetAxis("Mouse X"), 0, Input.GetAxis("Mouse Y"));
+            userInput.y = 0;
+
+            // Set the Orbit origin by adding the user input times by a speed and the
+            // zoom value to make the panning feel consistant.
+            OrbitOrigin += userInput * mousePanSpeed * mouseSensitivity * Time.deltaTime * Zoom;
         }
+
+        // Rotate the camera when the Right Mouse button is held. Rotating the
+        // camera works by getting the user's input and multiplying by a speed
+        if(Input.GetMouseButton(1))
+            OrbitAngle += new Vector3(-Input.GetAxis("Mouse Y") * rotateSpeed * mouseSensitivity,Input.GetAxis("Mouse X") * rotateSpeed * mouseSensitivity);
+
+        // change the zoom value 
         Zoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed * (0.025f + ZoomDecimal);
     }
     void LateUpdate()
     {
+        // Move the camera and make it look at the orbitOrigin. This is where all
+        // the magic happens.
         transform.position = new Vector3(orbitOrigin.x,orbitHeight,orbitOrigin.z) + Quaternion.Euler(orbitAngle) * Vector3.forward * -zoom;
         transform.LookAt(orbitOrigin);
     }

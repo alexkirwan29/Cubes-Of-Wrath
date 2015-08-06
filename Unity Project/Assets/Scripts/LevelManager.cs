@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
-using System;
 
 public class LevelManager : MonoBehaviour
 {
@@ -120,6 +119,15 @@ public struct TileCoord : System.IEquatable<TileCoord>
 	{
 		return x.GetHashCode() + y.GetHashCode();
 	}
+
+    public static TileCoord FromVector3(Vector3 value)
+    {
+        return new TileCoord(Mathf.FloorToInt(value.x), Mathf.FloorToInt(value.z));
+    }
+    public static TileCoord FromVector2(Vector2 value)
+    {
+        return new TileCoord(Mathf.FloorToInt(value.x), Mathf.FloorToInt(value.y));
+    }
 }
 public class Tile
 {
