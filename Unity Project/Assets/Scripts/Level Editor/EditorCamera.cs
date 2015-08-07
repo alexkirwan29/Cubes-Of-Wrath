@@ -3,6 +3,21 @@ using System.Collections;
 
 public class EditorCamera : MonoBehaviour
 {
+    private static EditorCamera editorCamInstance;
+    public static EditorCamera instance
+    {
+        get
+        {
+            if(editorCamInstance == null)
+            {
+                editorCamInstance = FindObjectOfType<EditorCamera>();
+                if(editorCamInstance == null)
+                    Debug.LogWarning("Uh-Oh! You need at least one <i>EditorCamera</i> in this scene");
+            }
+            return editorCamInstance;
+        }
+    }
+
     [SerializeField]
     float panSpeed = 15f, mousePanSpeed = 5f, rotateSpeed = 25f, zoomSpeed = 5f;
 

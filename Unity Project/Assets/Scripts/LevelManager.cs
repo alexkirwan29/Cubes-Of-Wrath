@@ -8,6 +8,9 @@ public class LevelManager : MonoBehaviour
     Dictionary<TileCoord, Transform> spawnedTiles;
     public LevelSet levelSet;
 	public Texture2D texture;
+    public string fileName = "Test";
+    public enum LevelLoadMode { blank, texture, fromFile, fromAsset};
+    public LevelLoadMode loadMode;
 
     public UnityEvent OnChanged;
 
@@ -18,13 +21,15 @@ public class LevelManager : MonoBehaviour
         data = new Dictionary<TileCoord, Tile>();
         spawnedTiles = new Dictionary<TileCoord, Transform>();
 
-        if (texture != null)
-		{
-			MakeLevelFromTexture(texture);
-		}
+        if (loadMode == LevelLoadMode.texture && texture != null)
+            MakeLevelFromTexture(texture);
+        else if (loadMode == LevelLoadMode.fromFile && System.IO.File.Exists(string.Format("{0}.level", fileName)))
+            LoadFromFile(fileName);
 	}
 	public void MakeLevelFromTexture(Texture2D texture)
 	{
+        ClearLevel();
+
         // This method works by looping through each pixel in the
         // texture. If the pixel is black then create a tile with
         // the prefab value of 0.
@@ -37,12 +42,36 @@ public class LevelManager : MonoBehaviour
 			}
 		}
 	}
-	
-	public void CreateTile(TileCoord pos, Tile tile)
+    public void MakeLevelFromData(Dictionary<TileCoord, Tile> data)
+    {
+        ClearLevel();
+        foreach(KeyValuePair<TileCoord, Tile> entry in data)
+        {
+            CreateTile(entry.Key, entry.Value);
+        }
+    }
+    public void SaveToFile(string name)
+    {
+        LevelIO.SaveToFile(data, name);
+    }
+    public void LoadFromFile(string name)
+    {
+        ClearLevel();
+        MakeLevelFromData(LevelIO.LoadFromFile(name));
+    }
+    public void ClearLevel()
+    {
+        foreach(Transform entry in spawnedTiles.Values)
+            Destroy(entry.gameObject);
+
+        spawnedTiles.Clear();
+        data.Clear();
+    }
+    public void CreateTile(TileCoord pos, Tile tile)
 	{
         // Make sure the prefab we want to spawn exists, if it doesn't
         // cry in the console and exit out of this method.
-        if (!(tile.prefab >= 0 && tile.prefab < levelSet.prefabs.Length))
+        if (!(tile.prefab >= 0 && tile.prefab < levelSet.items.Length))
         {
             Debug.LogWarning(string.Format("This tile index {0} is not a valid index: Didn't do anything.",tile.prefab));
             return;
@@ -50,19 +79,17 @@ public class LevelManager : MonoBehaviour
 
         // Check to see if a tile is already here if so, windge about
         // it and return out of this method.
-        if(data.ContainsKey(pos))
-        {
-            Debug.LogWarning(string.Format("The map already has a tile at {0}: Didn't do anything.",pos));
+        if (data.ContainsKey(pos))
             return;
+
+        if (!spawnedTiles.ContainsKey(pos))
+        {
+            // Spawn in the prefab.
+            Transform inst = (Transform)Instantiate(levelSet.items[tile.prefab].prefab.transform, new Vector3(0.5f + pos.x, 0, 0.5f + pos.y), Quaternion.identity);
+            inst.SetParent(transform);
+            spawnedTiles.Add(pos, inst);
         }
 
-        // Spawn in the prefab.
-        Transform inst = (Transform)Instantiate(levelSet.prefabs[tile.prefab].transform, new Vector3(pos.x, 0, pos.y), Quaternion.identity);
-        inst.SetParent(transform);
-
-        // Add the prefab and data value to the dictionaries so we can
-        // keep track of them for use later.
-        spawnedTiles.Add(pos,inst);
         data.Add(pos, tile);
     }
 	public void RemoveTile(TileCoord pos)
@@ -90,6 +117,7 @@ public class LevelManager : MonoBehaviour
 		return data[pos];
 	}
 }
+[System.Serializable]
 public struct TileCoord : System.IEquatable<TileCoord>
 {
 	public int x;
@@ -129,6 +157,7 @@ public struct TileCoord : System.IEquatable<TileCoord>
         return new TileCoord(Mathf.FloorToInt(value.x), Mathf.FloorToInt(value.y));
     }
 }
+[System.Serializable]
 public class Tile
 {
 	public int prefab;
