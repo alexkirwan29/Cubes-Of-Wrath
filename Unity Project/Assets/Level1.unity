@@ -225,6 +225,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 176170, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
   m_IsPrefabParent: 0
@@ -698,7 +702,7 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 9d9f23b3cb0344542a7b599a041d0a4f, type: 3}
   m_PrefabInternal: {fileID: 1463910063}
---- !u!114 &1695997581
+--- !u!114 &1695997582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -706,13 +710,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1695997580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f020ff947215a748b4fcf0538879997, type: 3}
+  m_Script: {fileID: 11500000, guid: f7b8ada30afdd85459cd2f544fd61f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 599437851}
-  moveSpeed: 3
-  rotationSpeed: 3
+  turretSpeed: 10
+  fireRate: 1
+  fireBallHeight: .5
+  fireBall: {fileID: 127358, guid: fd9e5abc30fe27f4a9d04cfc5a85dd85, type: 2}
   range: 10
-  range2: 10
-  stop: 0
-  myTransform: {fileID: 0}

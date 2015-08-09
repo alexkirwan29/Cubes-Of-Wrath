@@ -5,7 +5,9 @@
  var range2 : float=10f;
  var stop : float=0;
  var myTransform : Transform; //current transform data of this enemy
+ var destroyAfter : float=5f;
  function Awake()
+ 
  {
      myTransform = transform; //cache transform data for easy access/preformance
  }
@@ -15,6 +17,8 @@
       target = GameObject.FindWithTag("Player").transform; //target the player
   
  }
+ 
+ 
   
  function Update () {
      //rotate to look at the player
@@ -37,5 +41,10 @@
      Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed*Time.deltaTime);
      }
      
+     }
   
- }
+  function destroy(){
+  
+   yield WaitForSeconds(destroyAfter);
+   Destroy (gameObject);
+     }   
