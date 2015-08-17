@@ -13,7 +13,7 @@ public class LevelIO
         formatter.Serialize(stream, data);
         stream.Close();
     }
-    public static Dictionary<TileCoord, Tile> LoadFromFile(string fileName)
+    public static Dictionary<TileCoord,Tile> LoadFromFile (string fileName)
     {
         if (File.Exists(string.Format("{0}.level", fileName)))
         {
@@ -29,12 +29,4 @@ public class LevelIO
             return null;
         }
     }
-    /*public static Dictionary<TileCoord,Tile> LoadFromAsset(TextAsset asset)
-    {
-        IFormatter formatter = new BinaryFormatter();
-        Stream stream = new FileStream(string.Format("{0}.bytes", fileName), FileMode.Open, FileAccess.Read, FileShare.Read);
-        Dictionary<TileCoord, Tile> data = (Dictionary<TileCoord, Tile>)formatter.Deserialize(stream);
-        stream.Close();
-        return data;
-    }*/
 }
