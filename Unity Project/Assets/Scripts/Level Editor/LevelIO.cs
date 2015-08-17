@@ -29,12 +29,12 @@ public class LevelIO
             return null;
         }
     }
-    public static Dictionary<TileCoord,Tile> LoadFromAsset(TextAsset asset)
+    /*public static Dictionary<TileCoord,Tile> LoadFromAsset(TextAsset asset)
     {
         IFormatter formatter = new BinaryFormatter();
         Stream stream = new FileStream(string.Format("{0}.bytes", fileName), FileMode.Open, FileAccess.Read, FileShare.Read);
         Dictionary<TileCoord, Tile> data = (Dictionary<TileCoord, Tile>)formatter.Deserialize(stream);
         stream.Close();
         return data;
-    }
+    }*/
 }
