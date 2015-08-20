@@ -36,6 +36,7 @@ namespace UI
             public int playCount;
         }
         TestListItem[] listItems;
+        public LoadingPanel loading;
         public RectTransform targetParent;
         public GameObject listItemPrefab;
         public Text pageText;
@@ -47,6 +48,7 @@ namespace UI
         // Use this for initialization
         void Start()
         {
+            loading.Hide();
             listItems = new TestListItem[15];
             for(int i = 0; i < listItems.Length; i ++)
             {
@@ -69,11 +71,13 @@ namespace UI
         }
         IEnumerator GetPage(int page)
         {
+            loading.SetStatus("Loading Test", "Loading Opperation Fat COW from the '<i>internet</i>'",true);
             WWW www = new WWW(string.Format("{0}?page={1}",jsonFile,page));
             yield return www;
             if (www.error != null)
             {
                 Debug.LogError(www.error);
+                loading.SetStatus("Loading Failed!",www.error, false);
             }
             else
             {
@@ -96,6 +100,7 @@ namespace UI
                         listItems[i].gameObject.SetActive(false);
                     }
                 }
+                loading.Hide();
             }
             
         }
