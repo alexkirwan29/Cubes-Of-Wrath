@@ -1,0 +1,36 @@
+#header {
+	
+	color: deepskyblue;
+	text-align: center;
+	background-color: beige;
+	height: 90px;
+	font-size: 70px;
+	font-family: sans-serif;
+	text-shadow: 3px 3px 10px slategrey;
+	position: fixed;
+	top: 0;
+    margin:auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+	
+}
+
+body {
+	
+	background-color: gray;
+	margin: 0px
+}
+
+.level {
+	
+	background-color: indianred;
+	height: 200px;
+	width: 300px;
+	margin-top: 100px;
+	margin-left: 400px;
+	font-family: sans-serif;
+	color: white;
+	padding: 10px;
+	
+}
