@@ -15,7 +15,7 @@ TagManager:
   - 
   - Sprites
   - Bars
-  - 
+  - UIBG
   - 
   - 
   - 
@@ -43,4 +43,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 3330767645
+    locked: 0
+  - name: UIGB
+    uniqueID: 3309289745
     locked: 0
