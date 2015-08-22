@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-namespace UI
+namespace Cow.UI
 {
     [RequireComponent(typeof(CanvasGroup))]
     public class LoadingPanel : MonoBehaviour

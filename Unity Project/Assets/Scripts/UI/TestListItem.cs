@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UI;
 using UnityEngine.UI;
-using System;
+using Cow.UI;
 
-namespace UI
+namespace Cow.UI
 {
 	public class TestListItem : MonoBehaviour
 	{

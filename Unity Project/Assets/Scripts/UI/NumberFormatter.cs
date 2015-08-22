@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Text))]
-public class NumberFormatter : MonoBehaviour
+namespace Cow.UI
 {
-    string startingText;
-    Text label;
-
-    void Awake()
+    [RequireComponent(typeof(Text))]
+    public class NumberFormatter : MonoBehaviour
     {
-        label = GetComponent<Text>();
-        startingText = label.text;
-        ChangeValue(0);
-    }
+        string startingText;
+        Text label;
 
-    public void ChangeValue(float value)
-    {
-        label.text = string.Format(startingText,value);
+        void Awake()
+        {
+            label = GetComponent<Text>();
+            startingText = label.text;
+            ChangeValue(0);
+        }
+
+        public void ChangeValue(float value)
+        {
+            label.text = string.Format(startingText, value);
+        }
     }
 }

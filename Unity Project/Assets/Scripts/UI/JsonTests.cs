@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UI;
+using Cow.UI;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 
-namespace UI
+namespace Cow.UI
 {
     public class JsonTests : MonoBehaviour
     {
@@ -83,7 +83,7 @@ namespace UI
             {
                 ListData downloadedData = JsonConvert.DeserializeObject<ListData>(www.text);
                 maxPages = downloadedData.totalPages;
-                pageText.text = string.Format("Page {0} of {1}", page, maxPages);
+                pageText.text = string.Format("Page {0} of {1}", page + 1, maxPages);
 
                 nextPage.interactable = page <= maxPages - 2;
                 lastPage.interactable = page >= 1;
