@@ -11,7 +11,7 @@ GameObject:
   - 222: {fileID: 22269684}
   - 114: {fileID: 11448630}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Likes Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ GameObject:
   - 114: {fileID: 11423594}
   - 114: {fileID: 11448928}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Likes Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,12 +128,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22443820}
+  - 114: {fileID: 11407980}
+  - 114: {fileID: 11460074}
   - 222: {fileID: 22211726}
   - 114: {fileID: 11423350}
-  - 114: {fileID: 11407980}
   - 114: {fileID: 11416966}
   m_Layer: 5
-  m_Name: 'rowItem '
+  m_Name: Level Browser Row
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +151,7 @@ GameObject:
   - 222: {fileID: 22249574}
   - 114: {fileID: 11430334}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Likes Dislikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +177,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -202,7 +203,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -311,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300000, guid: 8f9b08ca63017af4c8328a2e3e5f2448, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
@@ -382,7 +383,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -400,6 +401,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!114 &11460074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9c5d45a5584424682e6efb2915fc07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idLabel: {fileID: 11467126}
+  titleLabel: {fileID: 11483424}
+  authorLabel: {fileID: 11406822}
+  dateLabel: {fileID: 11405928}
+  playsLabel: {fileID: 11448892}
+  ratingBar: {fileID: 11423594}
 --- !u!114 &11467126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -673,7 +691,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: Likes Dislikes
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179814}
