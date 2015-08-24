@@ -36,69 +36,154 @@ namespace Cow.UI
             public int likes;
             [JsonProperty("dislikes")]
             public int dislikes;
+
+            [JsonProperty("description")]
+            public string description;
+            [JsonProperty("data url")]
+            public string data;
         }
 
-        public string pageUrl = "http://madcat/dev/cow%20back/get_list.php";
-        public int pageSize = 50;
+        [Header("Server Varibles")]
+        public string COWsButtUrl = "http://madcat/dev/cow%20back";
+        public string getList = "get_list.php";
+        public string getLevelDetails = "get_level.php";
+
+        [Header("List Varibles")]
+        public int pageSize = 100;
+        public LevelBrowserListItem listItemPrefab;
+
+        [Header("UI Varibles")]
+        public Button nextPage;
+        public Button lastPage;
+        public Button previousPage;
+        public Button fistPage;
+        [Space(5)]
+        public Text pageLabel;
+        public ScrollRect scrollRect;
+        public LoadingPanel loading;
+        [Space(10)]
+        public LevelBrowserDetails levelDetails;
+        public RectTransform listContentContainer;
 
         private int maxPages = 0;
         private int page = 0;
+        private int detailsIndex = 0;
 
-        levelBrowserListItem[] listElements;
-        public RectTransform listContentContainer;
-        public levelBrowserListItem listItemPrefab;
+        public PageData pageData;
+        LevelBrowserListItem[] levels;
 
         void Start()
         {
             //Populate the list with empty elements
-            listElements = new levelBrowserListItem[pageSize];
+            levels = new LevelBrowserListItem[pageSize];
             for(int i = 0; i < pageSize;i++)
             {
                 GameObject go = Instantiate(listItemPrefab.gameObject);
                 go.transform.SetParent(listContentContainer);
-                listElements[i] = go.GetComponent<levelBrowserListItem>();
-                listElements[i].SetContent(null);
+                levels[i] = go.GetComponent<LevelBrowserListItem>();
+                levels[i].Create(this,i);
             }
             GetPage(0);
         }
-        IEnumerator DownloadPage(int page)
+
+        public void NextPage()
         {
-            WWW www = new WWW(string.Format("{0}?page={1}",pageUrl,page));
-            yield return www;
-            if(www.error != null)
-            {
-                Debug.LogError(www.error);
-            }
-            else
-            {
-                PageData downloadedPage = JsonConvert.DeserializeObject<PageData>(www.text);
-                maxPages = downloadedPage.maxPages;
-                
-                for(int i = 0; i < listElements.Length; i++)
-                {
-                    if (i < downloadedPage.elements.Length)
-                        listElements[i].SetContent(downloadedPage.elements[i]);
-                    else
-                        listElements[i].SetContent(null);
-                }
-            }
+            GetPage(++page);
+        }
+        public void PreviousPage()
+        {
+            GetPage(--page);
         }
 
-        public void GetPage(int page)
+        public void LastPage()
         {
-            page = Mathf.Clamp(page, 0, maxPages);
+            GetPage(maxPages-1);
+        }
+        public void FirstPage()
+        {
+            GetPage(0);
+        }
+
+        public void DownloadPage_Complete()
+        {
+            maxPages = pageData.maxPages;
+            pageLabel.text = string.Format("Page {0} of {1}", 1 + page, maxPages);
+
+            nextPage.interactable = page < maxPages - 1;
+            lastPage.interactable = page < maxPages - 1;
+
+            previousPage.interactable = page > 0;
+            fistPage.interactable = page > 0;
+
+
+            for (int i = 0; i < levels.Length; i++)
+            {
+                if (i < pageData.elements.Length)
+                    levels[i].SetContent(pageData.elements[i]);
+                else
+                    levels[i].SetContent(null);
+            }
+            //Force the canvas to update then tell the scroll rect to snap to the top
+            //Canvas.ForceUpdateCanvases();
+            //scrollRect.verticalNormalizedPosition = 1;
+        }
+
+        public void GetPage(int pageIndex)
+        {
+            detailsIndex = -1;
+            levelDetails.Close();
+            foreach (LevelBrowserListItem level in levels)
+                level.SetContent(null);
+
+            page = Mathf.Clamp(pageIndex, 0, maxPages);
+
             StopAllCoroutines();
             StartCoroutine(DownloadPage(page));
         }
-        public void NextPage()
+
+        public void ShowLevelDetails(int index)
         {
-            page++;
-            GetPage(page);
+            StartCoroutine(GetLevelDetails(index));
         }
-        public void LastPage()
+
+        IEnumerator DownloadPage(int page)
         {
-            page--;
-            GetPage(page);
+            loading.SetStatus(string.Format("Loading Page {0}", page + 1), "", true);
+            WWW www = new WWW(string.Format("{0}/{1}?page={2}&size={3}", COWsButtUrl, getList, page, pageSize));
+            Debug.Log(www.url);
+            yield return www;
+            if (www.error != null)
+            {
+                Debug.LogError(www.error);
+                loading.SetStatus("Loading Error", string.Format("Loading Page {0} Failed!{2}Error: <color=red>{1}</color>{2}<size=12>URL: {3}</size>",page+1,www.error,System.Environment.NewLine,www.url), false);
+            }
+            else
+            {
+                yield return 1;
+                pageData = JsonConvert.DeserializeObject<PageData>(www.text);
+                yield return 1;
+                DownloadPage_Complete();
+                loading.Hide();
+            }
+        }
+        IEnumerator GetLevelDetails(int index)
+        {
+            if (index != detailsIndex)
+            {
+                detailsIndex = index;
+                levelDetails.Open(detailsIndex + 1);
+                WWW www = new WWW(string.Format("{0}/{1}?id={2}", COWsButtUrl, getLevelDetails, pageData.elements[index].id));
+                yield return www;
+                if (www.error != null)
+                {
+                    Debug.LogError(www.error);
+                }
+                else
+                {
+                    yield return 1;
+                    levelDetails.SetContent(JsonConvert.DeserializeObject<ListElement>(www.text));
+                }
+            }
         }
     }
 }

@@ -12,11 +12,9 @@ namespace Cow.UI
         [SerializeField]
         Text description;
         [SerializeField]
-        Animator anim;
-        [SerializeField]
         Image spinner;
         CanvasGroup canvasGroup;
-        public void SetStatus(string title, string status, bool spinner)
+        public void SetStatus(string title, string status, bool spinner = false)
         {
             if (canvasGroup == null)
                 canvasGroup = GetComponent<CanvasGroup>();
