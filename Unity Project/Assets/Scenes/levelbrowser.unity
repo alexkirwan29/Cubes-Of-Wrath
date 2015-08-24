@@ -904,9 +904,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: .39199999}
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 21300000, guid: 0b9970acb510c6447906c215f9021197, type: 3}
+  m_Type: 2
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -930,10 +930,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69e76e06b05bc744ae11997bc4f341c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  COWsButtUrl: http://madcat/dev/cow%20back
+  COWsButtUrl: http://tomp.id.au/dev/cow%20back
   getList: get_list.php
   getLevelDetails: get_level.php
-  pageSize: 50
+  pageSize: 100
   listItemPrefab: {fileID: 11460074, guid: 023e8bc673a0ade4e928fc0bb8d0be2f, type: 2}
   nextPage: {fileID: 119826597}
   lastPage: {fileID: 1558026251}
