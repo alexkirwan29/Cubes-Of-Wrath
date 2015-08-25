@@ -10,7 +10,7 @@ namespace Cow.UI
         public class PageData
         {
             [JsonProperty("version")]
-            public int pageVersion;
+            public string pageVersion;
             [JsonProperty("page count")]
             public int maxPages;
             [JsonProperty("total levels")]
@@ -44,13 +44,15 @@ namespace Cow.UI
         }
 
         [Header("Server Varibles")]
-        public string COWsButtUrl = "http://madcat/dev/cow%20back";
+        public string CowsButtUrl = "http://203.143.87.76/cowsbutt/";
         public string getList = "get_list.php";
         public string getLevelDetails = "get_level.php";
 
         [Header("List Varibles")]
         public int pageSize = 100;
         public LevelBrowserListItem listItemPrefab;
+        public enum OrderByModes { likes = 0, plays = 1, author = 2, date = 3, title = 4 }
+        public OrderByModes orderBy = OrderByModes.date;
 
         [Header("UI Varibles")]
         public Button nextPage;
@@ -61,6 +63,10 @@ namespace Cow.UI
         public Text pageLabel;
         public ScrollRect scrollRect;
         public LoadingPanel loading;
+        [Space(5)]
+        //Debug Varibles
+        public Text versionText;
+        public Text urlText;
         [Space(10)]
         public LevelBrowserDetails levelDetails;
         public RectTransform listContentContainer;
@@ -103,9 +109,27 @@ namespace Cow.UI
         {
             GetPage(0);
         }
+        
+        public void ChangeOrderMode(OrderByModes orderBy)
+        {
+            if (this.orderBy == orderBy)
+                return;
+
+            this.orderBy = orderBy;
+            GetPage(page);
+        }
+        public void ChangeOrderMode(int orderBy)
+        {
+            if (this.orderBy == (OrderByModes)orderBy)
+                return;
+
+            this.orderBy = (OrderByModes)orderBy;
+            GetPage(page);
+        }
 
         public void DownloadPage_Complete()
         {
+            versionText.text = string.Format("Server Version: '<i>{0}</i>'", pageData.pageVersion);
             maxPages = pageData.maxPages;
             pageLabel.text = string.Format("Page {0} of {1}", 1 + page, maxPages);
 
@@ -132,13 +156,13 @@ namespace Cow.UI
         {
             detailsIndex = -1;
             levelDetails.Close();
-            foreach (LevelBrowserListItem level in levels)
-                level.SetContent(null);
+            /*foreach (LevelBrowserListItem level in levels)
+                level.SetContent(null);*/
 
             page = Mathf.Clamp(pageIndex, 0, maxPages);
 
             StopAllCoroutines();
-            StartCoroutine(DownloadPage(page));
+            StartCoroutine(DownloadPage(page,orderBy));
         }
 
         public void ShowLevelDetails(int index)
@@ -146,11 +170,11 @@ namespace Cow.UI
             StartCoroutine(GetLevelDetails(index));
         }
 
-        IEnumerator DownloadPage(int page)
+        IEnumerator DownloadPage(int page,OrderByModes orderBy)
         {
             loading.SetStatus(string.Format("Loading Page {0}", page + 1), "", true);
-            WWW www = new WWW(string.Format("{0}/{1}?page={2}&size={3}", COWsButtUrl, getList, page, pageSize));
-            Debug.Log(www.url);
+            WWW www = new WWW(string.Format("{0}{1}?page={2}&size={3}&order={4}", CowsButtUrl, getList, page, pageSize,orderBy.ToString()));
+            urlText.text = www.url;
             yield return www;
             if (www.error != null)
             {
@@ -172,7 +196,8 @@ namespace Cow.UI
             {
                 detailsIndex = index;
                 levelDetails.Open(detailsIndex + 1);
-                WWW www = new WWW(string.Format("{0}/{1}?id={2}", COWsButtUrl, getLevelDetails, pageData.elements[index].id));
+                WWW www = new WWW(string.Format("{0}{1}?id={2}", CowsButtUrl, getLevelDetails, pageData.elements[index].id));
+                urlText.text = www.url;
                 yield return www;
                 if (www.error != null)
                 {

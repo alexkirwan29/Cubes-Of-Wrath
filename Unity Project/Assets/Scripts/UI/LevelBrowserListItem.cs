@@ -9,7 +9,7 @@ namespace Cow.UI
     [RequireComponent(typeof(Button))]
     public class LevelBrowserListItem : MonoBehaviour
     {
-        public Text idLabel;
+        //public Text idLabel;
         public Text titleLabel;
         public Text authorLabel;
         public Text dateLabel;
@@ -32,7 +32,7 @@ namespace Cow.UI
                 return;
             }
             gameObject.SetActive(true);
-            idLabel.text = data.id.ToString();
+            //idLabel.text = data.id.ToString();
             titleLabel.text = data.title;
             authorLabel.text = data.author;
             dateLabel.text = data.date;
