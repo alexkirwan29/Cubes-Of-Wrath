@@ -1,0 +1,23 @@
+[
+	{"motd": "Hello World", "ttl": 5},
+	{"motd": "Made Of Voxels", "ttl": 15},
+	{"motd": "Made Of Juce", "ttl": 15},
+	{"motd": "Created with %25 blood, %40 sweat and %35 tears just for you!", "ttl": 40},
+	{"motd": "Hot Diggity Dog!", "ttl": 15},
+	{"motd": "<size=35>Banana!</size>", "ttl": 3},
+	{"motd": "Woot!", "ttl": 20},
+	{"motd": "such wow", "ttl": 10},
+	{"motd": "much text", "ttl": 10},
+	{"motd": "very amaze", "ttl": 10},
+	{"motd": "Tom Was Here", "ttl": 10},
+	{"motd": "'Best Game Ever 10/10' - IGN", "ttl": 30},
+	{"motd": "Game of the year - 1854", "ttl": 30},
+	{"motd": "Your Best Pal", "ttl": 10},
+	{"motd": "They killed Kenny!\nYou Bastards!", "ttl": 20},
+	{"motd": "'Supreme Leader' Kim Jong Un is top of leaderboard with a score of 2!", "ttl": 30},
+	{"motd": "Windows 10? Ha ha get a life, I have Windows 98!", "ttl": 20},
+	{"motd": "Better than 'Mincrat'", "ttl": 30},
+	{"motd": "You will never have enough time to read this message of the day because it is told to last only one second! Mwahahahaahahhah", "ttl": 1}
+	{"motd": "Mak actually hates mac's", "ttl": 6}
+	{"motd": "Jet fuel cant melt steal beams", "ttl": 5}
+]
