@@ -17,7 +17,8 @@
 	{"motd": "'Supreme Leader' Kim Jong Un is top of leaderboard with a score of 2!", "ttl": 30},
 	{"motd": "Windows 10? Ha ha get a life, I have Windows 98!", "ttl": 20},
 	{"motd": "Better than 'Mincrat'", "ttl": 30},
-	{"motd": "You will never have enough time to read this message of the day because it is told to last only one second! Mwahahahaahahhah", "ttl": 1}
-	{"motd": "Mak actually hates mac's", "ttl": 6}
-	{"motd": "Jet fuel cant melt steal beams", "ttl": 5}
+	{"motd": "You will never have enough time to read this message of the day because it is told to last only one second! Mwahahahaahahhah", "ttl": 1},
+	{"motd": "Mak actually hates Macs", "ttl": 6},
+  {"motd": "Jet fuel cant melt steel beams", "ttl": 5}, 
+  {"motd": "'Guys! I said I hated Juice!' - Adolf Hitler, 1939", "ttl": 5}
 ]
