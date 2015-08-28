@@ -10,9 +10,6 @@ if(isset($_GET['motdtext']) && isset($_GET['motdttl']))
     $motd = $_GET['motdtext'];
     $ttl = $_GET['motdttl'];
     
-    echo $motd;
-    echo $ttl;
-    
     // Open up a file and get it's contents then close it.
     $file = file_get_contents("motd.json");
     $data = json_decode($file);
