@@ -7,20 +7,56 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <style type="text/css">
        
+        smltxt {
+         font-size: 20px;
+            }
+        body {
+            background-color: deepskyblue;
+            margin-top: 30%;
+        }
+        
+        .headers {
+            color: white;
+            font-size: 50px;
+            text-shadow: 2px 2px #49ccf8;
+        }
+        
+        .title {
+            color: white;
+            font-size: 80px;
+            text-shadow: 2px 2px grey;
+            font-family: fantasy;
+        }
+        
+        
     </style> 
     
 </head>
 
 <body>
+<center>
+    <div class="title">CREATE A MESSGAE OF THE DAY</div><br><br>
+    <form class="pure-form pure-form-stacked" action="add_motd.php" method="get">
+    <fieldset>
+        <div class="headers"><label>MESSAGE OF THE DAY</label></div>
+        <input type="text" size="100%" name="motdtext" placeholder="write text here" required><br>
 
-<form action="add_motd.php" method="get">
-    MOTD REQUEST: <input type="text" name="motdtext" placeholder="My message of the day" required><br>
-    Time To Live: <input type="number" name="motdttl" min="0" max="60" placeholder="20" value="20" required><br>
-    <input type="submit" value="Submit">  
-    
-    
+
+        <div class="headers"><label>Display Time <smltxt>(seconds)</smltxt></label></div>
+        <input type="number" name="motdttl" min="1" max="60" value="5" required>
+        </label>
+
+        <br><button type="submit" class="pure-button pure-button-primary" type="submit" value="submit"><i class="fa fa-hand-peace-o"></i></button>
+    </fieldset>
+</form>
+
+</center>
 </body>
 </html>
+
