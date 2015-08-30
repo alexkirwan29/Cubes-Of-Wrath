@@ -3,22 +3,24 @@ using System.Collections;
 
 public class wallDetect : MonoBehaviour {
 
-    public float leftMost;
-    public float rightMost;
+    public float rightLimit = 2.5f;
+    public float leftLimit = 1.0f;
+    public float speed = 2.0f;
+    private int direction = 1;
 
-	// Use this for initialization
-	void Start () {
+    void Update()
+    {
+        if (transform.position.x > rightLimit)
+        {
+            direction = -1;
+        }
+        else if (transform.position.x < leftLimit)
+        {
+            direction = 1;
+        }
 
-        RaycastHit hit;
-        float distanceToGround = 0;
+    }
 
-        if (Physics.Raycast(transform.position, Vector3.left, out hit))
-            distanceToGround = hit.distance;
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+         
 }
