@@ -45,18 +45,35 @@
     <form class="pure-form pure-form-stacked" action="add_motd.php" method="get">
     <fieldset>
         <div class="headers"><label>MESSAGE OF THE DAY</label></div>
-        <input type="text" size="100%" name="motdtext" placeholder="write text here" required><br>
+        <input name="motd" type="text" size="100%" name="motdtext" placeholder="write text here" required><br>
 
 
         <div class="headers"><label>Display Time <smltxt>(seconds)</smltxt></label></div>
         <input type="number" name="motdttl" min="1" max="60" value="5" required>
         </label>
 
-        <br><button type="submit" class="pure-button pure-button-primary" type="submit" value="submit"><i class="fa fa-hand-peace-o"></i></button>
+        <br><input type="submit" class="pure-button pure-button-primary" value="submit"><i class="fa fa-hand-peace-o"></i></button>
     </fieldset>
 </form>
 
 </center>
 </body>
+<script>
+
+$(function() {
+$("#submit").on("click",function() {
+   var motd = $("input:text[name='motd']".val();
+     var badwords = ["fuck"];
+    
+if($.inArray(motd, badwords) !==-1)
+{
+    alert("you have a naughty word in here you bastard");
+    return false;
+    
+}
+});
+});
+
+</script>
 </html>
 
