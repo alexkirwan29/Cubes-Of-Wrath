@@ -48,6 +48,7 @@ namespace Cow.UI
 
         public void NewMotd()
         {
+            CancelInvoke("NewMotd");
             if (motd == null || motd.Length == 0)
                 return;
 
