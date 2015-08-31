@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Cow;
+using System;
 
 namespace Cow
 {
@@ -83,6 +84,16 @@ namespace Cow
         public static TileCoord FromVector2(Vector2 value)
         {
             return new TileCoord(Mathf.FloorToInt(value.x), Mathf.FloorToInt(value.y));
+        }
+
+        public Vector3 ToVector3(float y)
+        {
+            return new Vector3(x, y, this.y);
+        }
+
+        public static implicit operator Vector3(TileCoord v)
+        {
+            return new Vector3(v.x, 0, v.y);
         }
     }
 }
