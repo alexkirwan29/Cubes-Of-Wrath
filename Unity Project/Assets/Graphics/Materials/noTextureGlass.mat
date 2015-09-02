@@ -33,5 +33,5 @@ Material:
       data:
         first:
           name: _BumpAmt
-        second: 10
+        second: 0
     m_Colors: {}
