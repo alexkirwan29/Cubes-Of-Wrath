@@ -21,6 +21,8 @@ public class PathFollower : MonoBehaviour                                       
     float t = 0;
     void Start()                                                                   //                   === Start Method ===
     {
+        startPos = path[0].ToVector3(heighOffset);
+        endPos = startPos;
         NextPos();
     }
     void Update()                                                                  //                   === Update Method ===

@@ -73,14 +73,14 @@ namespace Cow.Editor
             if (!UserInput)
                 return;
 
-            // Get the user's input and rotate it by the Orbit angle then normalize it.
+            // Get the user's input and rotate it by the Orbit angle then normalise it.
             Vector3 userInput = Quaternion.Euler(0, OrbitAngle.y, 0) * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             userInput.y = 0;
             if (userInput.sqrMagnitude > 1)
                 userInput.Normalize();
 
             // Set the Orbit origin by adding the user input times by a speed and the
-            // zoom value to make the panning feel consistant.
+            // zoom value to make the panning feel consistent.
             OrbitOrigin += userInput * panSpeed * Time.deltaTime * Zoom;
 
             if (Input.GetMouseButton(2))
@@ -90,7 +90,7 @@ namespace Cow.Editor
                 userInput.y = 0;
 
                 // Set the Orbit origin by adding the user input times by a speed and the
-                // zoom value to make the panning feel consistant.
+                // zoom value to make the panning feel consistent.
                 OrbitOrigin += userInput * mousePanSpeed * mouseSensitivity * Time.deltaTime * Zoom;
             }
 

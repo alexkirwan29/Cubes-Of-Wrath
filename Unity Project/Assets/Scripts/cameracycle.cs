@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class cameracycle : MonoBehaviour {
+using Cow.UI.Transitions;
 
+public class cameracycle : MonoBehaviour
+{
+    public Transition transition;
     public KeyCode key;
 
-    // Use this for initialization
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         if (Input.GetKeyDown(key))
-            GameCamera.instance.SetTarget(transform);
-
-
+            transition.Enter(new UnityEngine.Events.UnityAction(delegate { GameCamera.instance.SetTarget(transform); transition.Exit(null,4f); }),4f);
     }
 }
 

@@ -11,7 +11,7 @@ public class Move : MonoBehaviour
 
     void Start()
     {
-        GameCamera.instance.SetTarget(transform);
+        //GameCamera.instance.SetTarget(this);
         controller = GetComponent<CharacterController>();
     }
 
