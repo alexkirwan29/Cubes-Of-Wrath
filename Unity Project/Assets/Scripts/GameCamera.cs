@@ -37,7 +37,7 @@ public class GameCamera : MonoBehaviour
     Vector3 targetPos;
     Vector3 targetForward;
     //PlayerMovement target;
-    Transform target;
+    Transform target = null;
 
     void LateUpdate()
     {
@@ -62,11 +62,15 @@ public class GameCamera : MonoBehaviour
         targetForward = target.transform.forward;
         Debug.Log(string.Format("Game Camera's target has been changed to <i>{0}</i>",newTarget.name));
     }*/
-    public void SetTarget(Transform newTarget)
+    public Transform Target
     {
-        target = newTarget;
-        targetPos = target.position;
-        targetForward = target.forward;
-        Debug.Log(string.Format("Game Camera's target has been changed to <i>{0}</i>", newTarget.name));
+        get { return target; }
+        set
+        {
+            target = value;
+            targetPos = target.position;
+            targetForward = target.forward;
+            Debug.Log(string.Format("Game Camera's target has been changed to <i>{0}</i>", value.name));
+        }
     }
 }

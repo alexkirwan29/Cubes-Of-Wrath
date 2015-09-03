@@ -9,37 +9,48 @@ public class PathFollower : MonoBehaviour                                       
     public TileCoord[] path = {new TileCoord(0,1),new TileCoord(0,-1)};
     public bool loop = true;
     public bool forward = true;
+    public bool faceForward = false;
+    public bool smooth = false;
 
-    bool move = true;
+    internal bool move = true;
 
-    Vector3 startPos;
-    Vector3 endPos;
-    float distance;
+    internal Vector3 startPos;
+    internal Vector3 endPos;
+    internal float distance;
 
-    int currPos;
+    internal int currPos;
 
-    float t = 0;
-    void Start()                                                                   //                   === Start Method ===
+    internal float t = 0;
+
+    internal Quaternion lastLookAt;
+    internal Quaternion currLookAt;
+
+    internal virtual void Start()                                                                   //                   === Start Method ===
     {
         startPos = path[0].ToVector3(heighOffset);
         endPos = startPos;
         NextPos();
     }
-    void Update()                                                                  //                   === Update Method ===
+    internal virtual void Update()                                                                  //                   === Update Method ===
     {
         if (!move)
             return;
 
         t += Time.deltaTime * speed / distance;
-        transform.position = Vector3.Lerp(startPos, endPos, t);
+        if(smooth)
+            transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0, 1, t));
+        else
+            transform.position = Vector3.Lerp(startPos, endPos, t);
 
         if (t > 1)
         {
             NextPos();
             t = 0;
         }
+        if(faceForward)
+            transform.rotation = Quaternion.Lerp(lastLookAt, currLookAt, t * distance);
     }
-    public void NextPos()                                                          //                   === NextPos Method ===
+    public virtual void NextPos()                                                          //                   === NextPos Method ===
     {
         if (path == null || path.Length == 0)                                       // Don't move if we don't have a path to follow.
         {
@@ -86,15 +97,31 @@ public class PathFollower : MonoBehaviour                                       
         endPos = path[currPos].ToVector3(heighOffset);                             // current end position before we change it. Next we set the end
                                                                                    // position to the new end position.
         distance = Vector3.Distance(startPos, endPos);                             // Find the distance between the two points.
+
+        lastLookAt = currLookAt;
+        currLookAt = Quaternion.LookRotation(endPos - startPos);
     }
 
-    void OnDrawGizmosEnabled()
+    internal virtual void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
         for(int i = 0; i < path.Length; i++)
         {
-            if(i != 0)
-                Gizmos.DrawLine(path[i-1], path[i]);
+            if(i == currPos)
+                Gizmos.color = Color.blue;
+            else
+                Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(path[i].ToVector3(heighOffset), 0.1f);
+
+            if (i != 0)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(path[i - 1].ToVector3(heighOffset), path[i].ToVector3(heighOffset));
+            }
+        }
+        if (loop)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(path[0].ToVector3(heighOffset), path[path.Length - 1].ToVector3(heighOffset));
         }
     }
 }
