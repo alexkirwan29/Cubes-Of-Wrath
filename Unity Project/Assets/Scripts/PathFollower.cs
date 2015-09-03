@@ -4,7 +4,7 @@ using Cow;
 
 public class PathFollower : MonoBehaviour                                          //                     === Comments ===
 {
-    public float heighOffset = 1f;
+    public float heightOffset = 1f;
     public float speed = 1f;
     public TileCoord[] path = {new TileCoord(0,1),new TileCoord(0,-1)};
     public bool loop = true;
@@ -27,7 +27,7 @@ public class PathFollower : MonoBehaviour                                       
 
     internal virtual void Start()                                                                   //                   === Start Method ===
     {
-        startPos = path[0].ToVector3(heighOffset);
+        startPos = path[0].ToVector3(heightOffset);
         endPos = startPos;
         NextPos();
     }
@@ -94,7 +94,7 @@ public class PathFollower : MonoBehaviour                                       
         #endregion
         startPos = endPos;                                                         // Set the starting position for the next path segment to the
         Debug.Log(currPos);
-        endPos = path[currPos].ToVector3(heighOffset);                             // current end position before we change it. Next we set the end
+        endPos = path[currPos].ToVector3(heightOffset);                             // current end position before we change it. Next we set the end
                                                                                    // position to the new end position.
         distance = Vector3.Distance(startPos, endPos);                             // Find the distance between the two points.
 
@@ -102,7 +102,7 @@ public class PathFollower : MonoBehaviour                                       
         currLookAt = Quaternion.LookRotation(endPos - startPos);
     }
 
-    internal virtual void OnDrawGizmosSelected()
+    /*internal virtual void OnDrawGizmosSelected()
     {
         for(int i = 0; i < path.Length; i++)
         {
@@ -110,18 +110,18 @@ public class PathFollower : MonoBehaviour                                       
                 Gizmos.color = Color.blue;
             else
                 Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(path[i].ToVector3(heighOffset), 0.1f);
+            Gizmos.DrawWireSphere(path[i].ToVector3(heightOffset), 0.1f);
 
             if (i != 0)
             {
                 Gizmos.color = Color.green;
-                Gizmos.DrawLine(path[i - 1].ToVector3(heighOffset), path[i].ToVector3(heighOffset));
+                Gizmos.DrawLine(path[i - 1].ToVector3(heightOffset), path[i].ToVector3(heightOffset));
             }
         }
         if (loop)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(path[0].ToVector3(heighOffset), path[path.Length - 1].ToVector3(heighOffset));
+            Gizmos.DrawLine(path[0].ToVector3(heightOffset), path[path.Length - 1].ToVector3(heightOffset));
         }
-    }
+    }*/
 }
