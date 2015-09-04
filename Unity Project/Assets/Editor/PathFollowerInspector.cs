@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
 using UnityEditorInternal;
 
 [CustomEditor(typeof(PathFollower)), CanEditMultipleObjects]
 public class PathFollowerInspector : Editor
 {
-    List<Cow.TileCoord> path;
     ReorderableList list;
     PathFollower pf;
     float lWidth;
@@ -15,7 +13,6 @@ public class PathFollowerInspector : Editor
     {
         lWidth = EditorGUIUtility.labelWidth;
         pf = target as PathFollower;
-        path = new List<Cow.TileCoord>(pf.path);
 
         list = new ReorderableList(serializedObject, serializedObject.FindProperty("path"), true, true, true, true);
 
