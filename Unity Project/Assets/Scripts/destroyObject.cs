@@ -6,6 +6,7 @@ public class destroyObject : MonoBehaviour
 
 
     public Score score;
+    public GameObject explosion;
 
     // Use this for initialization
     void Start()
@@ -22,7 +23,16 @@ public class destroyObject : MonoBehaviour
             Destroy(gameObject);
             score.AddScore(50);
         }
+
     }
+
+    void OnDestroy() {
+            print("Script was destroyed");
+            Instantiate(explosion, transform.position, transform.rotation);
+            
+        }
+    
+    
 
 
 }
