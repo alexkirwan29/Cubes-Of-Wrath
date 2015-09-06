@@ -17,7 +17,3 @@ MonoBehaviour:
     prefab: {fileID: 161532, guid: 9306c454c95b96c4a91d73fb92d4c651, type: 2}
     halfOffset: 0
     random: 0
-  - name: Wall
-    prefab: {fileID: 161532, guid: 9306c454c95b96c4a91d73fb92d4c651, type: 2}
-    halfOffset: 0
-    random: 0

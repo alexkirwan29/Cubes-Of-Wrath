@@ -4,6 +4,7 @@ using Cow.Editor;
 
 namespace Cow.Editor
 {
+    [RequireComponent(typeof(EditorCursorGraphic))]
     public class EditorCursor : MonoBehaviour
     {
         #region Static Accessors
@@ -34,6 +35,8 @@ namespace Cow.Editor
         #endregion
 
         public float mousePlaneOffset = 2f;
+        [HideInInspector]
+        public EditorCursorGraphic graphic;
 
         Plane groundPlane;
 
@@ -41,6 +44,9 @@ namespace Cow.Editor
         TileCoord mouseTile;
         TileCoord lastTile;
         Camera cam;
+
+        bool isOverScene = true;
+        bool validCursor = false;
 
         [System.Serializable]
         public class CursorEvent : UnityEvent<TileCoord> { };
@@ -58,7 +64,10 @@ namespace Cow.Editor
             get { return mouseTile; }
         }
         #endregion
-
+        void Awake()
+        {
+            graphic = GetComponent<EditorCursorGraphic>();
+        }
         void Start()
         {
             cam = EditorCamera.instance.GetComponent<Camera>();
@@ -76,17 +85,23 @@ namespace Cow.Editor
                 mouseTile = TileCoord.FromVector3(mousePos);
             }
         }
-        void UpdateMouseButtons()
+        void UpdateMouseButtons(bool mouseUsable)
         {
             #region Left Click
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && mouseUsable)
+            {
                 OnCursorDown.Invoke(cursorTile);
+                validCursor = true;
+            }
 
             if (Input.GetMouseButtonUp(0))
+            {
                 OnCursorUp.Invoke(cursorTile);
+                validCursor = false;
+            }
 
-            if (Input.GetMouseButton(0) && !lastTile.Equals(mouseTile))
+            if (Input.GetMouseButton(0) && !lastTile.Equals(mouseTile) && mouseUsable && validCursor)
             {
                 lastTile = mouseTile;
                 OnCursorMoveHold.Invoke(cursorTile);
@@ -95,10 +110,12 @@ namespace Cow.Editor
         }
         void Update()
         {
+            isOverScene = !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() && MouseInWindow();
+            if (validCursor && !isOverScene)
+                validCursor = false;
             UpdateMousePos();
             transform.position = new Vector3(mouseTile.x, mousePlaneOffset, mouseTile.y);
-            if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() && MouseInWindow())
-                UpdateMouseButtons();
+            UpdateMouseButtons(isOverScene);
         }
         bool MouseInWindow()
         {

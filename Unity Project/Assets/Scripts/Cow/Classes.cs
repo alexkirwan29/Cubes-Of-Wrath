@@ -57,6 +57,20 @@ namespace Cow
             this.y = y;
         }
 
+        #region Static Defaults
+        static TileCoord m_zero = new TileCoord();
+        public static TileCoord Zero { get { return m_zero; } }
+        static TileCoord m_up = new TileCoord(0, 1);
+        public static TileCoord Up { get { return m_up; } }
+        static TileCoord m_down = new TileCoord(0, -1);
+        public static TileCoord Down { get { return m_down; } }
+        static TileCoord m_left = new TileCoord(-1, 0);
+        public static TileCoord Left { get { return m_left; } }
+        static TileCoord m_right = new TileCoord(1, 0);
+        public static TileCoord Right { get { return m_right; } }
+        #endregion
+
+        #region Overrides
         public override bool Equals(object obj)
         {
             if (obj is TileCoord)
@@ -75,7 +89,9 @@ namespace Cow
         {
             return x.GetHashCode() + y.GetHashCode();
         }
+        #endregion
 
+        #region Converters
         public static TileCoord FromVector3(Vector3 value)
         {
             return new TileCoord(Mathf.FloorToInt(value.x), Mathf.FloorToInt(value.z));
@@ -98,5 +114,17 @@ namespace Cow
         {
             return new TileCoord(Mathf.FloorToInt(v.x),Mathf.FloorToInt(v.z));
         }
+        #endregion
+
+        #region Operators
+        public static bool operator == (TileCoord a, TileCoord b)
+        {
+            return a.x == b.x && a.y == b.y;
+        }
+        public static bool operator != (TileCoord a, TileCoord b)
+        {
+            return !(a == b);
+        }
+        #endregion
     }
 }
