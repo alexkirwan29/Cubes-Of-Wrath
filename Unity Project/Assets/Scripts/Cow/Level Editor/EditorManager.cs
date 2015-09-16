@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Cow.Editor.Brushes;
+using Cow.Editor.Helpers;
 
 namespace Cow.Editor
 {
@@ -9,7 +10,10 @@ namespace Cow.Editor
     public class EditorManager : MonoBehaviour
     {
         // ========= Variables! ==========  // Whoo!
-        LevelManager level;                 // The reference to the level part of the editor.
+        [HideInInspector]
+        public LevelManager level;          // The reference to the level part of the editor.
+        [HideInInspector]
+        public GetTiles getTiles;
 
         int brushSize;                      // The brush size.
         int currBrush;                      // The current brush.
@@ -26,6 +30,7 @@ namespace Cow.Editor
         {
             // Get the LevelManager because it's very important... 'level-editor'
             level = GetComponent<LevelManager>();
+            getTiles = new GetTiles(level);
         }
         void Start()
         {
@@ -58,7 +63,7 @@ namespace Cow.Editor
             if (pos.x > lastPos.x + 1 || pos.x < lastPos.x - 1 || pos.y > lastPos.y + 1 || pos.y < lastPos.y - 1)
                 // Just loop through each tile in the line and paint a brush over
                 // the tile.
-                foreach (TileCoord posInLine in GetTilesAlongLine(lastPos, pos))
+                foreach (TileCoord posInLine in getTiles.AlongLine(lastPos, pos))
                     Paint(posInLine, currTile);
             else
                 Paint(pos, currTile);
@@ -80,75 +85,6 @@ namespace Cow.Editor
         }
 
         #region Helpers
-        TileCoord[] GetInsideSquare(int radius, TileCoord offset)
-        {
-            // Return an array of Tiles that fit inside a square the size of radius
-            // with an offset.
-            List<TileCoord> tiles = new List<TileCoord>();
-            for (int y, x = offset.x - radius; x <= (offset.x + radius); x++)
-            {
-                for (y = offset.y - radius; y <= (offset.y + radius); y++)
-                {
-                    tiles.Add(new TileCoord(x, y));
-                }
-            }
-
-            return tiles.ToArray();
-        }
-        TileCoord[] GetInsideSquare(int radius, TileCoord offset, Tile type)
-        {
-            // Return an array of Tiles that fit inside a square the size of radius
-            // with an offset of the same type of 'type'.
-            List<TileCoord> tiles = new List<TileCoord>();
-            for (int y, x = offset.x - radius; x <= (offset.x + radius); x++)
-            {
-                for (y = offset.y - radius; y <= (offset.y + radius); y++)
-                {
-                    if(level.GetTile(new TileCoord(x,y)) == type)
-                        tiles.Add(new TileCoord(x, y));
-                }
-            }
-
-            return tiles.ToArray();
-        }
-        TileCoord[] GetTilesAlongLine(TileCoord start, TileCoord end)
-        {
-            // This if statement just swaps the start and end around if the start
-            // is left of the end.
-            if (start.x > end.x)
-            {
-                TileCoord swapTile = start;
-                start = end;
-                end = swapTile;
-            }
-
-            // Bresenham's line algorithm.
-            // http://wki.pe/Bresenham's_line_algorithm
-            // C.O.W. C# Implementation written by Tom Parker.
-            List<TileCoord> tiles = new List<TileCoord>();
-
-            float deltaX = end.x - start.x;
-            float deltaY = end.y - start.y;
-            float error = 0;
-            float deltaError = Mathf.Abs(deltaY / deltaX);
-
-            int y = start.y;
-
-            for(int x = start.x; x < end.x; x++)
-            {
-                tiles.Add(new TileCoord(x, y));
-                error += deltaError;
-                while (error >= 0.5f)
-                {
-                    tiles.Add(new TileCoord(x, y));
-                    y += (int)Mathf.Sign(end.y - start.y);
-                    error -= 1;
-                }
-            }
-
-            return tiles.ToArray();
-        }
-
         // These are used to change the brush, the size of the brush and the
         // selected tile type
         public int BrushSize
@@ -188,7 +124,7 @@ namespace Cow.Editor
         }
         void OnTileChange()
         {
-            Debug.Log(string.Format("Active tile changed to <i>{0}</i>",ActiveTile));
+            Debug.Log(string.Format("Active tile changed to '<i>{0}</i>'",ActiveTile));
         }
         #endregion
     }

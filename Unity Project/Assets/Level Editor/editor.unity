@@ -1933,9 +1933,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1297726513}
-        m_MethodName: SaveToFile
-        m_Mode: 5
+      - m_Target: {fileID: 1297726514}
+        m_MethodName: SaveButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3661,6 +3661,7 @@ GameObject:
   - 114: {fileID: 1297726513}
   - 114: {fileID: 1297726512}
   - 114: {fileID: 1297726514}
+  - 114: {fileID: 1297726515}
   m_Layer: 0
   m_Name: '# Level'
   m_TagString: Untagged
@@ -3691,6 +3692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd46ecf51ea87104fb7a695c64e62aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: {fileID: 0}
   cursor: {fileID: 0}
 --- !u!114 &1297726513
 MonoBehaviour:
@@ -3723,6 +3725,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791645968be9e9243aecedd1fe1dc860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1297726515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1297726510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b581d044f9f14448ce4ce77bdaf0d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  log: 1
+  keyboardShortucts:
+  - shortcutName: Control + S
+    modifierKey: 0
+    key: 115
+    onDown:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    onUp:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1297726514}
+          m_MethodName: SaveButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - shortcutName: Control + O
+    modifierKey: 0
+    key: 111
+    onDown:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    onUp:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1297726514}
+          m_MethodName: OpenButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - shortcutName: Control + P
+    modifierKey: 0
+    key: 112
+    onDown:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    onUp:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1297726514}
+          m_MethodName: PlayLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
 --- !u!1 &1321461462
 GameObject:
   m_ObjectHideFlags: 0
@@ -6124,9 +6211,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1297726513}
-        m_MethodName: LoadFromFile
-        m_Mode: 5
+      - m_Target: {fileID: 1297726514}
+        m_MethodName: OpenButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Cow.Editor.Brushes;
+using Cow.Editor.Helpers;
 
 namespace Cow.Editor
 {
@@ -11,16 +12,34 @@ namespace Cow.Editor
         List<Vector3> vertices;
         List<int> triangles;
         public float height = 2f;
-
+        public EditorManager editor;
         List<TileCoord> tiles;
 
         public void VisualiseBrush(Brush brush, int radius)
         {
+            tiles = new List<TileCoord>( brush.GetBrush(radius, new TileCoord(), new Tile(0)).Keys);
+            RenderTiles();
+        }
+        [System.Obsolete("Drawing lines through the CursorGraphic is not needed any-more")]
+        public void VisualiseBrush(Brush brush, int radius, TileCoord start, TileCoord end)
+        {
+            tiles = new List<TileCoord>();
+            foreach (TileCoord lineTile in editor.getTiles.AlongLine(start, end))
+            {
+                foreach (TileCoord tile in brush.GetBrush(radius, lineTile, new Cow.Tile(0)).Keys)
+                {
+                    if (!tiles.Contains(tile))
+                        tiles.Add(tile);
+                }
+            }
+            tiles = new List<TileCoord>(brush.GetBrush(radius, new TileCoord(), new Tile(0)).Keys);
+            RenderTiles();
+        }
+
+        void RenderTiles()
+        {
             vertices = new List<Vector3>();
             triangles = new List<int>();
-
-            tiles = new List<TileCoord>( brush.GetBrush(radius, new TileCoord(), new Tile(0)).Keys);
-
             foreach (TileCoord tilePos in tiles)
             {
                 Tile(tilePos);
@@ -32,7 +51,6 @@ namespace Cow.Editor
             mesh.RecalculateBounds();
             mesh.RecalculateNormals();
             mf.mesh = mesh;
-
         }
 
         public void Tile(TileCoord pos)
@@ -94,7 +112,8 @@ namespace Cow.Editor
 
         void Start()
         {
-
+            if (editor == null)
+                editor = FindObjectOfType<EditorManager>();
         }
     }
 }

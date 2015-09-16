@@ -22,4 +22,16 @@ public class LevelEditorGUI : MonoBehaviour
     {
         editor.BrushSize = Mathf.FloorToInt(value);
     }
+    public void SaveButton()
+    {
+        editor.level.SaveToFile("test");
+    }
+    public void OpenButton()
+    {
+        editor.level.LoadFromFile("test");
+    }
+    public void PlayLevel()
+    {
+        throw new System.NotImplementedException("LOL, that part has not been added yet");
+    }
 }
