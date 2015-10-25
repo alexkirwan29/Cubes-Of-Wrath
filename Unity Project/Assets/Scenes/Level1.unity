@@ -197,6 +197,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 445544310bcd4184c9cb464e744fb2a0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &314786350 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 176170, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
+  m_PrefabInternal: {fileID: 902289719}
+--- !u!114 &314786358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 314786350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9d02410c42c52498d27a5a6a64f174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  StrafeSpeed: 10
+  TurnSpeed: 45
+  mode: 0
+  shipGraphics: {fileID: 0}
 --- !u!1 &435482339
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f477de8d8803846b86c51c0e786c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 20
+  distance: -10
   height: 5
   angle: {x: 1, y: 1, z: 30}
   cameraRollAmmount: 5
@@ -341,7 +361,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11463904, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8205178, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
       propertyPath: MinDistance
