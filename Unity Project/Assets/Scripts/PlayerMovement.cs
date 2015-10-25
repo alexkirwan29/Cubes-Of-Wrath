@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     int dir;
     void Start()
     {
-        //GameCamera.instance.SetTarget(this);
+        GameCamera.instance.SetTarget(transform);
     }
 
     // Update is called once per frame
