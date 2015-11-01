@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
@@ -9,12 +10,16 @@ public class PlayerMovement : MonoBehaviour
     public enum moveMode {Turn, Strafe, SnapTurn};
     public moveMode mode = moveMode.Strafe;
     public Transform shipGraphics;
+    public Text Count;
+    private int count;
     float turnInput;
     float lastInput;
     int dir;
     void Start()
     {
         GameCamera.instance.SetTarget(transform);
+        count = 0;
+        SetCount();
     }
 
     // Update is called once per frame
@@ -47,6 +52,19 @@ public class PlayerMovement : MonoBehaviour
             }
             //transform.Rotate(Vector3.up, TurnSpeed * Time.deltaTime * turnInput);
         }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Voxels"))
+        {
+            other.gameObject.SetActive(false);
+            count = count + 1;
+            SetCount();
+        }
+    }
+    void SetCount ()
+    {
+        Count.text = "Voxels collected: " + count.ToString();
     }
     public float horizontalVelocity { get { return turnInput; } }
 }
