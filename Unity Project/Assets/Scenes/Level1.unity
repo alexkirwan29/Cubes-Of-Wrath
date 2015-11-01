@@ -631,6 +631,7 @@ MonoBehaviour:
   mode: 0
   shipGraphics: {fileID: 0}
   Count: {fileID: 1743410466}
+  collectPrefab: {fileID: 105544, guid: 2b2e69547df00c94ba84e478b6aa9c57, type: 2}
 --- !u!1001 &324192406
 Prefab:
   m_ObjectHideFlags: 0

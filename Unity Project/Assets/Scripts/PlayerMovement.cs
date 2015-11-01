@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public moveMode mode = moveMode.Strafe;
     public Transform shipGraphics;
     public Text Count;
+    public GameObject collectPrefab;
     private int count;
     float turnInput;
     float lastInput;
@@ -60,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
             other.gameObject.SetActive(false);
             count = count + 1;
             SetCount();
+            Instantiate(collectPrefab, transform.position, Quaternion.identity);
         }
     }
     void SetCount ()
