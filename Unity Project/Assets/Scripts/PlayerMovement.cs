@@ -61,7 +61,8 @@ public class PlayerMovement : MonoBehaviour
             other.gameObject.SetActive(false);
             count = count + 1;
             SetCount();
-            Instantiate(collectPrefab, transform.position, Quaternion.identity);
+            GameObject collected = (GameObject)Instantiate(collectPrefab, transform.position, Quaternion.identity);
+            Destroy(collected, 1);
         }
     }
     void SetCount ()
