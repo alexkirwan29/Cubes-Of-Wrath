@@ -663,7 +663,7 @@ MonoBehaviour:
   shipGraphics: {fileID: 0}
   Count: {fileID: 1743410466}
   collectPrefab: {fileID: 105544, guid: 2b2e69547df00c94ba84e478b6aa9c57, type: 2}
-  badCollectPrefab: {fileID: 1850470259}
+  badCollectPrefab: {fileID: 112988, guid: abd82b2ed7ac60846b45a26302d07110, type: 2}
 --- !u!1001 &324192406
 Prefab:
   m_ObjectHideFlags: 0
@@ -2789,10 +2789,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 445544310bcd4184c9cb464e744fb2a0, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1850470259 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 184088, guid: 892bedfe33535dc4d9e7d84b73c4019d, type: 2}
-  m_PrefabInternal: {fileID: 53727298}
 --- !u!4 &1850470260 stripped
 Transform:
   m_PrefabParentObject: {fileID: 463544, guid: 892bedfe33535dc4d9e7d84b73c4019d, type: 2}
