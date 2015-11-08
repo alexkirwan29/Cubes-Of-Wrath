@@ -15,6 +15,7 @@ GameObject:
   - 114: {fileID: 11463904}
   - 143: {fileID: 14317758}
   - 54: {fileID: 5438696}
+  - 114: {fileID: 11441116}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.9011726, y: 2.99000001, z: -.354999989}
+  m_LocalPosition: {x: 0, y: .709999979, z: 2.8599999}
   m_LocalScale: {x: .5, y: 1, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,19 +99,19 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176170}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c94ab92c34aa1a046bc69afd4627bb5e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .171000004
+  m_Volume: .0700000003
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   Priority: 122
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: .630595207
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -162,7 +163,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &11463904
+--- !u!114 &11441116
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -170,10 +171,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 176170}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9d02410c42c52498d27a5a6a64f174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 20
+  StrafeSpeed: 10
+  TurnSpeed: 100
+  mode: 0
+  shipGraphics: {fileID: 0}
+  Count: {fileID: 0}
+  collectPrefab: {fileID: 105544, guid: 2b2e69547df00c94ba84e478b6aa9c57, type: 2}
+  badCollectPrefab: {fileID: 112988, guid: abd82b2ed7ac60846b45a26302d07110, type: 2}
+--- !u!114 &11463904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176170}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3499e25e45467745ae6a9ad9b5e5107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 8
+  forwardSpeed: 0
   turnRate: 180
 --- !u!143 &14317758
 CharacterController:

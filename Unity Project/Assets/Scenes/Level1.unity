@@ -641,29 +641,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 445544310bcd4184c9cb464e744fb2a0, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &314786350 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 176170, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
-  m_PrefabInternal: {fileID: 902289719}
---- !u!114 &314786358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 314786350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a9d02410c42c52498d27a5a6a64f174, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 20
-  StrafeSpeed: 10
-  TurnSpeed: 100
-  mode: 0
-  shipGraphics: {fileID: 0}
-  Count: {fileID: 1743410466}
-  collectPrefab: {fileID: 105544, guid: 2b2e69547df00c94ba84e478b6aa9c57, type: 2}
-  badCollectPrefab: {fileID: 112988, guid: abd82b2ed7ac60846b45a26302d07110, type: 2}
 --- !u!1001 &324192406
 Prefab:
   m_ObjectHideFlags: 0
@@ -1814,28 +1791,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 432556, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
       propertyPath: m_RootOrder
-      value: 33
+      value: 34
       objectReference: {fileID: 0}
-    - target: {fileID: 11463904, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8205178, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
-      propertyPath: MinDistance
-      value: .630595207
-      objectReference: {fileID: 0}
-    - target: {fileID: 11463904, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
-      propertyPath: forwardSpeed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8205178, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8205178, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 11441116, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
+      propertyPath: Count
+      value: 
+      objectReference: {fileID: 1743410466}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf57a7b1cc38f5743adbcf0ba7c8a60c, type: 2}
   m_IsPrefabParent: 0
