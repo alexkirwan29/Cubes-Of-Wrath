@@ -18,5 +18,7 @@ public class wwwImage : MonoBehaviour {
 
 		RawImage image = GetComponent<RawImage> ();
 		image.texture = www.texture;
+
+		Debug.Log ("image downloaded from big ben");
 	}
 }
