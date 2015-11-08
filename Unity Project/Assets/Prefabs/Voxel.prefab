@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2360760}
   - 114: {fileID: 11471988}
   - 54: {fileID: 5496800}
+  - 122: {fileID: 12211622}
   m_Layer: 0
   m_Name: Voxel
   m_TagString: Voxels
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 128714}
   m_LocalRotation: {x: .353553414, y: .353553414, z: -.14644663, w: .853553355}
-  m_LocalPosition: {x: 12.0299997, y: .800000012, z: 56.1300011}
+  m_LocalPosition: {x: -1.79999995, y: .800000012, z: 79.0800018}
   m_LocalScale: {x: .75, y: .75000006, z: .75}
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,6 +102,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba444f3fe744d7a419568c1f4fbcd938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!122 &12211622
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128714}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4280054192
+  m_Size: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
