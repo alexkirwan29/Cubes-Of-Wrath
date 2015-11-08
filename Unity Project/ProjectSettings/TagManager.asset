@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Voxels
   - Voxels2
+  - Wall
   layers:
   - Default
   - TransparentFX
