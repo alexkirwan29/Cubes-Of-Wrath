@@ -6,10 +6,7 @@ public class submitFeedbackButton : MonoBehaviour {
 
     public InputField paragraph;
     
-    public void onSubmit()
-    {
-        paragraph.text = 
-    }
+        
     
 
 }
