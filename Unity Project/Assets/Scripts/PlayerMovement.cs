@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform shipGraphics;
     public Text Count;
     public GameObject collectPrefab;
+    public GameObject badCollectPrefab;
     private int count;
     float turnInput;
     float lastInput;
@@ -63,6 +64,14 @@ public class PlayerMovement : MonoBehaviour
             SetCount();
             GameObject collected = (GameObject)Instantiate(collectPrefab, transform.position, Quaternion.identity);
             Destroy(collected, 1);
+        }
+        if (other.gameObject.CompareTag("Voxels2"))
+        {
+            other.gameObject.SetActive(false);
+            count = 0;
+            SetCount();
+            GameObject badCollect = (GameObject)Instantiate(badCollectPrefab, transform.position, Quaternion.identity);
+            Destroy(badCollect, 1);
         }
     }
     void SetCount ()
