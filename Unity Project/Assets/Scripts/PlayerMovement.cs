@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
                 dir = (int)Mathf.Repeat(dir, 4);
                 transform.rotation = Quaternion.Euler(0,dir * 90,0);
             }
-            //transform.Rotate(Vector3.up, TurnSpeed * Time.deltaTime * turnInput);
+            transform.Rotate(Vector3.up, TurnSpeed * Time.deltaTime * turnInput);
         }
     }
     void OnTriggerEnter(Collider other)
