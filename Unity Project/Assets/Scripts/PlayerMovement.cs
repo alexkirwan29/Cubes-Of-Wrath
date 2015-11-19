@@ -79,4 +79,6 @@ public class PlayerMovement : MonoBehaviour
         Count.text = "Voxels collected: " + count.ToString();
     }
     public float horizontalVelocity { get { return turnInput; } }
+
+    
 }
