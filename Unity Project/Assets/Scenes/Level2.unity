@@ -1550,6 +1550,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 11423060, guid: 189caeaa1b730f547bf3a9e7da22ada6, type: 2}
+      propertyPath: angle.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423060, guid: 189caeaa1b730f547bf3a9e7da22ada6, type: 2}
+      propertyPath: angle.z
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423060, guid: 189caeaa1b730f547bf3a9e7da22ada6, type: 2}
+      propertyPath: angle.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423060, guid: 189caeaa1b730f547bf3a9e7da22ada6, type: 2}
+      propertyPath: cameraRollAmmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423060, guid: 189caeaa1b730f547bf3a9e7da22ada6, type: 2}
+      propertyPath: distance
+      value: -4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 189caeaa1b730f547bf3a9e7da22ada6, type: 2}
   m_IsPrefabParent: 0
@@ -2670,7 +2690,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 404916, guid: 128c14f8025ccbf4bbfe61338bb65338, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8256496, guid: 128c14f8025ccbf4bbfe61338bb65338, type: 2}
       propertyPath: Priority
@@ -2684,6 +2704,10 @@ Prefab:
       propertyPath: Count
       value: 
       objectReference: {fileID: 7236705}
+    - target: {fileID: 11418842, guid: 128c14f8025ccbf4bbfe61338bb65338, type: 2}
+      propertyPath: TurnSpeed
+      value: 140
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 128c14f8025ccbf4bbfe61338bb65338, type: 2}
   m_IsPrefabParent: 0
