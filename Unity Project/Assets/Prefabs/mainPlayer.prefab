@@ -173,7 +173,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123544}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c94ab92c34aa1a046bc69afd4627bb5e, type: 3}
@@ -183,7 +183,7 @@ AudioSource:
   Loop: 1
   Mute: 0
   Spatialize: 0
-  Priority: 122
+  Priority: 0
   DopplerLevel: 1
   MinDistance: .630595207
   MaxDistance: 500
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 20
   StrafeSpeed: 10
-  TurnSpeed: 130
+  TurnSpeed: 140
   mode: 0
   shipGraphics: {fileID: 0}
   Count: {fileID: 0}

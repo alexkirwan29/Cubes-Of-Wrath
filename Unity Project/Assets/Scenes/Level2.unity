@@ -2690,24 +2690,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 404916, guid: 128c14f8025ccbf4bbfe61338bb65338, type: 2}
       propertyPath: m_RootOrder
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8256496, guid: 128c14f8025ccbf4bbfe61338bb65338, type: 2}
-      propertyPath: Priority
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8256496, guid: 128c14f8025ccbf4bbfe61338bb65338, type: 2}
-      propertyPath: m_Enabled
-      value: 0
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 11418842, guid: 128c14f8025ccbf4bbfe61338bb65338, type: 2}
       propertyPath: Count
       value: 
       objectReference: {fileID: 7236705}
-    - target: {fileID: 11418842, guid: 128c14f8025ccbf4bbfe61338bb65338, type: 2}
-      propertyPath: TurnSpeed
-      value: 140
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 128c14f8025ccbf4bbfe61338bb65338, type: 2}
   m_IsPrefabParent: 0
