@@ -34,7 +34,7 @@ GameObject:
   - 54: {fileID: 5467170}
   - 114: {fileID: 11488628}
   m_Layer: 0
-  m_Name: bullet
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
